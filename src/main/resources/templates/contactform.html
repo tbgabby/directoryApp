@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--style="" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange-->
+<!--history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity-->
+<!--cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent-->
+<!--video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js-menubar"-->
+<head>
+    <!-- Sourcebuster Js -->
+    <script src="https://cdn.jsdelivr.net/npm/sourcebuster@1.1.0/dist/sourcebuster.min.js"  crossorigin="anonymous"></script>
+
+    <!-- Ajax Js -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous"></script>
+
+    <!-- Required meta tags: Universal Character Set + Transformation Format—8-bit -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- APP | PAGE NAME -->
+    <title>Travelbeta Directory | Sign Up</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"> -->
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+<body onload="updateDB();">
+    <!-- HTML Element Tag is DIV, HTML Element Class is CONTAINER -->
+    <div class="container">
+        <h2>Travelbeta</h2>
+
+<!--suppress HtmlUnknownTarget -->
+<form class="form-horizontal" th:object="${contactForm}" th:action="@{/contact}" method="post">
+    <!--suppress HtmlUnknownTarget -->
+    <form class="form-horizontal" enctype="text/plain" th:object="${contactForm}" th:action="@{/interactions}" method="get">
+
+    <!-- 1st-things-1st: Map the "Re:Direct-to-Home" Link -->
+    <div class="row">
+        <div class="col-sm-3">
+            <a href="/contact/list">HOME</a>
+        </div>
+    </div>
+
+    <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+        <p th:text="#{form.hasErrors}">Error Message</p>
+    </div>
+        <input type="hidden" th:field="*{id}"/>
+
+        <div class="form-group" th:class="${#fields.hasErrors('firstName')} ? 'form-group has-error' : 'form-group'">
+            <label class="col-sm-2 control-label">Surname</label>
+            <div class="col-sm-10">
+                    <input type="text" id="firstName" name="firstName" class="form-control"
+                           placeholder="Surname" th:field="*{firstName}" th:errorclass="has-error" onblur="myFunction()" value=""/>
+                    <p id="interactionsFirstName"></p>
+
+                <span class="help-block">
+                <!-- UL sets standards for different product categories and tests products to make sure they meet the standards -->
+                    <ul>
+                        <li th:each="err : ${#fields.errors('firstName')}" th:text="${err}"></li>
+                    </ul>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group" th:class="${#fields.hasErrors('lastName')} ? 'form-group has-error' : 'form-group'">
+            <label class="col-sm-2 control-label">Last Name</label>
+            <div class="col-sm-10">
+                    <input type="text" id="lastName" name="lastName" class="form-control"
+                           placeholder="First Name" th:field="*{lastName}" th:errorclass="has-error" onblur="myFunction()" value=""/>
+                    <p id="interactionsLastName"></p>
+
+                <span class="help-block">
+                    <!-- UL sets standards for different product categories and tests products to make sure they meet the standards -->
+                   <ul>
+                       <li th:each="err : ${#fields.errors('lastName')}" th:text="${err}"></li>
+                   </ul>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group" th:class="${#fields.hasErrors('phoneNumber')} ? 'form-group has-error' : 'form-group'">
+            <label class="col-sm-2 control-label">Telephone</label>
+            <div class="col-sm-10">
+                    <input type="number" id="phoneNumber" name="phoneNumber" min="0" max="50000000000"
+                       step="0" class="form-control" placeholder="Telephone" th:field="*{phoneNumber}" th:errorclass="has-error" onblur="myFunction()" value=""/>
+                    <p id="interactionsPhoneNumber"></p>
+
+                <span class="help-block">
+                    <!-- UL sets standards for different product categories and tests products to make sure they meet the standards -->
+                   <ul>
+                       <li th:each="err : ${#fields.errors('phoneNumber')}" th:text="${err}"></li>
+                   </ul>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group" th:class="${#fields.hasErrors('email')} ? 'form-group has-error' : 'form-group'">
+            <label class="col-sm-2 control-label">Email Address</label>
+            <div class="col-sm-10">
+                    <input type="email" id="email" name="email" placeholder="Enter your email " autocomplete="on" class="form-control"
+                     th:field="*{email}" th:errorclass="has-error" onblur="myFunction()" value=""/>
+                    <p id="interactionsEmail"></p>
+                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+
+                <span class="help-block">
+                    <!-- UL sets standards for different product categories and tests products to make sure they meet the standards -->
+                   <ul>
+                       <li th:each="err : ${#fields.errors('email')}" th:text="${err}"></li>
+                   </ul>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group" th:class="${#fields.hasErrors('passWord')} ? 'form-group has-error' : 'form-group'">
+            <label class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+                    <input type="password" id="passWord" name="passWord" class="form-control"
+                       placeholder="Password" th:field="*{passWord}" th:errorclass="has-error" onblur="myFunction()" value=""/>
+                    <p id="interactionsPassWord"></p>
+                    <small class="form-text text-muted"><strong>Note: </strong>  Password is case-sensitive. </small>
+
+                <span class="help-block">
+                <!-- UL sets standards for different product categories and tests products to make sure they meet the standards -->
+                   <ul>
+                       <li th:each="err : ${#fields.errors('passWord')}" th:text="${err}"></li>
+                   </ul>
+                </span>
+            </div>
+        </div>
+            <!-- Use this Piece, for Verifying Humans-on-site-->
+            <!--  <div class="form-group form-check">-->
+            <!--     <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+            <!--        <label class="form-check-label" for="exampleCheck1">Not a robot? Tick here!</label>-->
+            <!--  </div>-->
+    <div class="row">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    </form>
+</form>
+    <p>
+    <footer class="form-group site-footer">
+        <div class="site-footer-legal">© 2019
+            <a href="www.travelbeta.com">Travelbeta</a>
+        </div>
+        <div class="form-group site-footer-right">
+            <div class="form-group site-footer-right">
+                Powered by <a href="www.travelbeta.com">Travelbeta.com Limited </a>
+            </div>
+        </div>
+    </footer>
+    </div>
+    <!--
+        On-Load Events Function + JQuery Ajax Call
+    -->
+    <script>
+        $(document).ready(function() {
+
+            $(function updateDB() {
+
+                $.ajax({
+                    success: function() {
+                        console.log("Form Page: Loaded");
+                    }
+                });
+            });
+        });
+    </script>
+    <!--
+        On-Blur Events Function + JQuery Ajax Call
+    -->
+    <script>
+        // var changeTimer = false;
+
+        $("#firstName").blur(function myFunction() {
+            var val = $(this).val();
+                console.log("Updating Surname...");
+
+            $.ajax({
+                type: "GET",
+                url: "/interactions",
+                data: { firstName: val },
+                success: function() {
+                    console.log('Surname: ' + val);
+
+                }
+            });
+        });
+        $("#lastName").blur(function myFunction() {
+            var val = $(this).val();
+                console.log("Updating Last Name...");
+
+            $.ajax({
+                type: "GET",
+                url: "/interactions",
+                data: { lastName: val },
+                success: function() {
+                    console.log('Last Name: ' + val);
+                }
+            });
+        });
+        $("#phoneNumber").blur(function myFunction() {
+            var val = $(this).val();
+                console.log("Updating Telephone Number...");
+
+            $.ajax({
+                type: "GET",
+                url: "/interactions",
+                data: { phoneNumber: val },
+                success: function() {
+                    console.log('Telephone: ' + val);
+                }
+            });
+        });
+        $("#email").blur(function myFunction() {
+            var val = $(this).val();
+                console.log("Updating Email Address...");
+
+            $.ajax({
+                type: "GET",
+                url: "/interactions",
+                data: { email: val },
+                success: function() {
+                    console.log('Email Address: ' + val);
+                }
+            });
+        });
+        $("#passWord").blur(function myFunction() {
+            var val = $(this).val();
+                console.log("Updating Password...");
+
+            $.ajax({
+                type: "GET",
+                url: "/interactions",
+                data: { passWord: val },
+                success: function() {
+                    console.log('Password: ' + val);
+                }
+            });
+        });
+
+        // $("#passWord").blur(function myFunction() {
+        //     var val = $(this).val();
+        //     console.log("Updating Password...");
+        //
+        //     if(changeTimer !== false) clearTimeout(changeTimer);
+        //     changeTimer = setTimeout(function(){
+        //
+        //         $.ajax({
+        //             type: "GET",
+        //             url: "/interactions",
+        //             data: { passWord: val },
+        //             success: function() {
+        //                 console.log('Password: ' + val);
+        //             }
+        //         });
+        //         changeTimer = false;
+        //     },300);
+        // });
+    </script>
+    <!--
+        On-Blur Function
+    -->
+    <script>
+        function myFunction() {
+            var ajaxRequest;
+            if (window.XMLHttpRequest) {
+                ajaxRequest = new XMLHttpRequest();
+            } else {
+                ajaxRequest = new ActiveXObject("Microsoft.XMLHttpRequest");
+            }
+
+            ajaxRequest.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+
+                    var firstName =document.getElementById("firstName").value;
+                    document.getElementById("interactionsFirstName").innerHTML = "You wrote: " + firstName;
+
+                    var lastName = document.getElementById("lastName").value;
+                    document.getElementById("interactionsLastName").innerHTML = "You wrote: " + lastName;
+
+                    var telephone =document.getElementById("phoneNumber").value;
+                    document.getElementById("interactionsPhoneNumber").innerHTML = "You wrote: " + telephone;
+
+                    var email = document.getElementById("email").value;
+                    document.getElementById("interactionsEmail").innerHTML = "You wrote: " + email;
+
+                    var password = document.getElementById("passWord").value;
+                    document.getElementById("interactionsPassWord").innerHTML = "You wrote: " + password;
+                }
+            };
+
+            ajaxRequest.open("GET", "/interactions", true);
+        }
+    </script>
+    <!--suppress CssUnknownTarget -->
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+San');
+        body {
+            font-family: 'Open Geoirgio', Cambria,sans-serif;
+        }
+
+        input[type="text"], input[type="number"], input[type="email"], input[type="password"] {
+        font-size: 0.9rem;
+        color: #010100;
+        width: 100%;
+        line-height: 60px;
+        padding-left: 3rem;
+        }
+        select {
+        width: 100%;
+        height: 65px;
+        color: #010100;
+        padding-left: 3rem;
+        }
+        .h1, h1 {
+        font-size: 36px;
+        }
+        .h1, .h2, .h3, h1, h2, h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        }
+        .text-white {
+        color: #fff!important;
+        }
+        .font-w400 {
+        font-weight: 400;
+        }
+        .padding-top-xl {
+        padding-top: 5rem!important;
+        }
+        .padding-bottom-xl {
+        padding-bottom: 5rem!important;
+        }
+        .margin-top-m {
+        margin-top: 3rem!important;
+        }
+        .margin-bottom-m {
+        margin-bottom: 3rem!important;
+        }
+        .section5 h2 {
+        line-height: 35px;
+        }
+        .section5 p {
+        font-size: 16px;
+        line-height: 26px;
+        }
+        .has-error input[type="text"], .has-error input[type="number"], .has-error input[type="email"], .has-error input[type="password"], .has-error select {
+            border: 1px solid #a94442;
+        }
+    </style>
+</body>
+    <!--
+        On-Load Function
+    -->
+    <script>
+        function updateDB() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/contact.htm", true);
+        }
+    </script>
+</html>
